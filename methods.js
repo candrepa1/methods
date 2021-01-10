@@ -116,7 +116,6 @@ console.log(result);
 // => [2, 3, 4]
 
 let stooges = [{name: 'moe', age: 40}, {name: 'larry', age: 50}, {name: 'curly', age: 60}];
-
 let array1 = [39, 63, 20, 40];
 
 let _ = {
@@ -146,22 +145,17 @@ let _ = {
         return endArray;
     }, 
     without: function withoutFunction (array, values) {
-        let endArray = [];
-        for(let i = 0; i < arguments.length; i++) {
-            console.log(arguments[i]);
-            for(let i = 0; i < array.length; i++) {
-                // console.log(array[i]);
-                if (array[i] !== arguments[i]) {
-                    endArray.push(array[i]);
+        let cloneArray = [...array];
+        const parameters = Object.values(arguments);
+
+        for(let i = 1; i < parameters.length; i++) {
+            for(let index = 0; index < cloneArray.length; index++) {
+                if(cloneArray[index] == parameters[i]) {
+                    cloneArray.splice(index, 1);
                 }
             }
-            // for (let arg = 1; arg < arguments.length; arg++) {
-            //     if(array[i] !== arguments[arg]) {
-            //         endArray.push(array[i]);
-            //     }
-            // }
-        }
-        return endArray;
+        } 
+        return cloneArray;
     }
 }
 
